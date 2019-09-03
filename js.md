@@ -84,3 +84,31 @@ function _instanceof(obj, con) {
 }
 ```
 ### 5. 实现一个函数，具备一下功能 将数组降维到 1 维，且去除重，并从小到大排列
+### 6. 手写实现 call、apply、bind
+
+```js
+// call
+Function.prototype.call = function(context) {
+	context = context || window;
+	context.fn = this;
+	const res = context.fn(...[...arguments].splice(1));
+	delete context.fn;
+	return res;
+}
+// apply 
+Function.prototype.apply = function (context) {
+	context = context || window;
+	context.fn = this;
+	const res = arguments[1] ? context.fn(...arguments[1]) : context.fn();
+	delete context.fn;
+	return res;
+}
+// bind
+Function.protptype.bind = function(context) {
+	if (typeof this !== 'function') {
+		throw new Errow('Function.prototype.bind - what is trying to be bound is not callable');
+	}
+	const self = this;
+
+}
+```
