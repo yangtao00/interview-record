@@ -17,8 +17,11 @@ setTimeout(() => {
   })
   setTimeout(() => { console.log('13') }, 0)
 })
+
 setTimeout(() => { console.log('14') }, 0)
+
 new Promise((resolve) => { console.log('15'); resolve() })
 .then( ()=> { console.log('16') })
+
 new Promise((resolve) => { console.log('17'); resolve() })
 .then(() => { console.log('18') })
