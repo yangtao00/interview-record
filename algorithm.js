@@ -73,12 +73,19 @@ function insertSort(arr) {
 console.log(insertSort([1,3,5,2,7,89,1]));
 
 // 有 n 个台阶，每次可以走 1 阶或者 2 阶，问题多少种走法
+// 递归 1
 function stairTotal(n) {
-  if (n === 1) {
+  if (n <= 1) {
     return 1;
-  } else if (n === 2) {
-    return 2;
   } else {
     return stairTotal(n -1) + stairTotal(n - 2);
+  }
+}
+// 尾递归
+function stairTotal2(n, start = 1, total = 1) {
+  if (n <= 1) {
+    return total
+  } else {
+    return stairTotal2(n - 1, total, total + start)
   }
 }
