@@ -58,15 +58,13 @@ a = { n: 1 };
 `new`的实现
 
 ```js
-function _new() {
-  const obj = {}; // 创建一个对象
-  const fn = [].shift.call(arguments); // 处理传参的问题
-  obj.__proto__ = fn.prototype; //链接到原型
-  let res = fn.apply(obj, arguments); // 绑定到 this
-  console.log('res:', res);
-  // 这里需要排除 res == null的情况
-  if ((res && typeof res === 'object') || typeof res === 'function') {
-    return res;
+function _new(fn, ...arguments) {
+  // 首先创建一个对象, 链接到原型，调用原型链上方法
+  const obj = Object.create(fn.prototype);
+  const result = fn.apply(obj, args); // 绑定 this
+  // 处理返回值，这里需要区分返回值是对象还原始类型， 是原始类型忽略 是对象就使用对象
+  if (result && (typeof result === 'object' || typeof result === 'function')) {
+    return result;
   }
   return obj;
 }
