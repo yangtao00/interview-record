@@ -78,7 +78,7 @@ function stairTotal(n) {
   if (n <= 1) {
     return 1;
   } else {
-    return stairTotal(n -1) + stairTotal(n - 2);
+    return stairTotal(n - 1) + stairTotal(n - 2);
   }
 }
 // 尾递归

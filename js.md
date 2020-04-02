@@ -154,3 +154,35 @@ Function.protptype.bind = function(context) {
   const self = this;
 };
 ```
+
+### 7. 如何使`a == 1` && `a == 2` && `a == 3` 同时成立
+
+```js
+
+// 第一种
+let a = {
+  i: 1,
+  //也可换成 valueOf
+  toString() {
+    return a.i++;
+  }
+}
+console.log(a == 1 && a == 2 && a == 3);
+
+// 第二种
+let value = 1;
+
+Object.defineProperty(window, 'a', {
+  get() {
+    return this.value++;
+  }
+});
+console.log(a == 1 && a == 2 && a == 3);
+
+// 第三种
+
+let a = [1, 2, 3];
+a.toString = a.shift;
+console.log(a == 1 && a == 2 && a == 3);
+
+```
