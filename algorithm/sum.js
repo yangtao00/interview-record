@@ -44,7 +44,7 @@ const add = (l1, l2) => {
     l2 = l2 && l2.next;
     sum = Math.floor(sum / 10);
   }
-  return origin;
+  return origin.next;
 };
 
 console.log('add:', add(new ListNode(2), new ListNode(6)));
